@@ -6,17 +6,22 @@ import Home from './pages/Home';
 import BuyBooks from './pages/BuyBooks';
 import SellBooks from './pages/SellBooks';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <Navbar/>
+    
       <Routes path='/'>
         <Route index element={ <Home/>} ></Route>
         <Route path='buy' element={ <BuyBooks/>} ></Route>
         <Route path='sell' element={ <SellBooks/>} ></Route>
       </Routes>
+      
     </BrowserRouter>
+    
   </React.StrictMode>
 );
 

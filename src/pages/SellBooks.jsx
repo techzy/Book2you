@@ -1,24 +1,26 @@
 
 import React , {useState} from 'react'
-import {addBook} from '../server.js';
-import main from '../server.js'
+import {addBook, uploadFile} from '../server.js';
 function SellBooks() {
     const [user, setUser] = useState({
         phoneNumber:Number,
         bookTitle:String,
         location: String,
         price: Number,
-        file: 'filepath', 
+        condition:String,
+        file: '', 
     });
     //TODO:  I need to some basic authenticaiton like phone number is 10 digits title of the book needs to be between 3 words or smt like that location is only 15 characters  and add new textarea field to specify the condition of the book
     return (
-        <form onSubmit={ (e)=>{
+        <div className="container">
+            <form onSubmit={ (e)=>{
             e.preventDefault();
             console.log(user)
             addBook(user);
             document.querySelectorAll('input').forEach((ele)=>{
                 ele.value = '';
             })
+            // window.location('/')
         }} >
 
             <div class="mb-3">
@@ -49,17 +51,30 @@ function SellBooks() {
                             class="form-control form-control-lg" name="price" id="price" aria-describedby="helpId" placeholder="" onChange={(e)=>{setUser({...user, price: e.target.value})}} required/>
                     </div>
                 </div>
+                
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Condition</label>
+                <select class="form-select form-select-lg" name="" id="" onChange={(e)=>{setUser({...user, condition: e.target.value})}} required>
+                    <option selected value="Like New">Like New</option>
+                    <option value="Slighty Worn">Slighty Worn</option>
+                    <option value="Worn Out">Worn Out</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Choose file </label>
-                {// TODO: file support # priority after functionality
-}
+                
 
-                <input type="file" class="form-control" name="" id="" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setUser({...user, file: e.target.value})}}  />
+                <input  accept="image/*" capture="environment" type="file" class="form-control" name="" id="" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setUser({...user, file: e.target.files[0]})
+            console.log(e.target.files)}}  required />
             </div>
-            <button type="Submit" class="btn btn-primary">Button</button>
+            <button type="Submit" class="btn btn-primary">Submit</button>
+            <br />
+            <br />
+            <small className='fs-6'>Please stay on this page for 10s after you have submitted</small>
 
         </form>
+        </div>
     )
 }
 

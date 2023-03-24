@@ -19,7 +19,7 @@ export default function BuyBooks() {
 
         }
         books();
-        console.log(booksState)
+        console.log(booksState[0])
     },[])
     return (
         <>
@@ -39,13 +39,18 @@ export default function BuyBooks() {
 
             </form> */}
 
-            <div className="cards">
+            <div className="container">
                 {
                    
                     
-                    booksState[0] == ''?'Books are loading..':booksState.map(ele => <BookCard book={ele}/>)
+                    booksState[0] == ''?'Books are loading...':booksState.map(ele => <BookCard book={ele}/>)
+
+
                     
                     
+                }
+                { 
+                    booksState[0] == undefined?'No books yet :(':''
                 }
                 
             </div>
