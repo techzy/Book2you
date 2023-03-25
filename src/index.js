@@ -7,6 +7,8 @@ import BuyBooks from './pages/BuyBooks';
 import SellBooks from './pages/SellBooks';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,7 +23,7 @@ root.render(
       </Routes>
       
     </BrowserRouter>
-    
+    <Footer />
   </React.StrictMode>
 );
 

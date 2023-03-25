@@ -65,7 +65,7 @@ function SellBooks() {
                 <label for="" class="form-label">Choose file </label>
                 
 
-                <input  accept="image/*" capture="environment" type="file" class="form-control" name="" id="" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setUser({...user, file: e.target.files[0]})
+                <input  accept="image/*" capture="environment" type="file" class="form-control form-control-lg" name="" id="" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setUser({...user, file: e.target.files[0]})
             console.log(e.target.files)}}  required />
             </div>
             <button type="Submit" class="btn btn-primary">Submit</button>

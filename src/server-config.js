@@ -16,6 +16,17 @@ const firebaseConfig = {
   appId: "1:841720546414:web:f02eab316009894012527f",
   measurementId: "G-H6GK28YEBX"
 };
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_APIKEY,
+//   authDomain: process.env.REACT_APP_AUTHDOMAIN,
+//   projectId: process.env.REACT_APP_PROJECTID,
+//   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+//   messagingSenderId: process.env.REACT_APP_,
+//   appId: process.env.REACT_APP_APPID,
+//   measurementId: process.env.REACT_APP_MEASUREID
+// };
+
+
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
