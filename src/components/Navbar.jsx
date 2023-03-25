@@ -13,10 +13,10 @@ function Navbar() {
     <a class="navbar-brand mb-0 h1" href='/'>Book2Man</a>
     <ul class="navbar-nav flex-row ">
         <li class="nav-item mx-1">
-          <a class={`btn btn-outline-primary ${location.pathname== '/buy'?'btn-primary text-white':''}`} href="/buy">Buy</a>
+          <a class={`btn btn-outline-primary ${location.pathname === '/buy'?'btn-primary text-white':''}`} href="/buy">Buy</a>
         </li>
         <li class="nav-item mx-1">
-          <a class={`btn btn-outline-primary ${location.pathname== '/sell'?'btn-primary text-white':''}`} href='/sell'>Sell</a>
+          <a class={`btn btn-outline-primary ${location.pathname === '/sell'?'btn-primary text-white':''}`} href='/sell'>Sell</a>
         </li>
       </ul>
   </div>
