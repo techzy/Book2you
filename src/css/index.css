@@ -11,6 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.active{
-  color: blue !important;
+.objc-h100{
+  object-fit: cover;
+  height: 100% !important;
 }
+

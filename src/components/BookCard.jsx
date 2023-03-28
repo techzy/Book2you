@@ -6,7 +6,7 @@ function BookCard(prop ) {
         <div className="card mb-3" >
             <div className="row g-0">
                 <div className="col-4">
-                    <img src={prop.book.file} className="img-fluid rounded-start" alt="..." />
+                    <img src={prop.book.file} className="img-fluid rounded-start w-100 objc-h100" alt="..." />
                 </div>
                 <div className="col-8">
                     <div className="card-body">

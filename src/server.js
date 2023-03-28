@@ -21,13 +21,20 @@ import {
     uploadBytesResumable,
     uploadBytes
 } from 'firebase/storage'
+import { getAuth } from 'firebase/auth';
 
 const db = getFirestore(app);
 const storage = getStorage(app)
 
+
+  
+
+
+
 // Adding Books
 console.log('server is running');
 const bookColl = collection(db, 'books')
+export let auth = getAuth();
 
 //  function uploadFile(file){
 //     console.log(file)
@@ -56,7 +63,6 @@ const bookColl = collection(db, 'books')
 
 
 export async function addBook(user) {
-    console.log(user.file)
     const rInt = Math.floor(1000 + Math.random() * 9000)
     const fileRef = ref(storage, `images/${user.file.name}-${rInt}-${user.file.lastModified}`);
     let urlfile;
@@ -70,65 +76,27 @@ export async function addBook(user) {
     try {
         console.log('I tried');
         urlfile = await uploadBytesResumable(fileRef, user.file)
-        console.log(urlfile)
-        // urlfile.on('state_changed',
-        //     (snapshot) => {
-        //         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        //         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        //         console.log('Upload is ' + progress + '% done');
-        //         switch (snapshot.state) {
-        //             case 'paused':
-        //                 console.log('Upload is paused');
-        //                 break;
-        //             case 'running':
-        //                 console.log('Upload is running');
-        //                 break;
-        //         }
-        //     },
-        //     (error) => {
-        //         // A full list of error codes is available at
-        //         // https://firebase.google.com/docs/storage/web/handle-errors
-        //         switch (error.code) {
-        //             case 'storage/unauthorized':
-        //                 // User doesn't have permission to access the object
-        //                 break;
-        //             case 'storage/canceled':
-        //                 // User canceled the upload
-        //                 break;
-
-        //                 // ...
-
-        //             case 'storage/unknown':
-        //                 // Unknown error occurred, inspect error.serverResponse
-        //                 break;
-        //         }
-        //     },
-        //     () => {
-        //         // Upload completed successfully, now we can get the download URL
-        //         // getDownloadURL(uploadTask.ref).then((downloadURL) => {
-        //         //     console.log('File available at', downloadURL);
-        //         // });
-        //     }
-        // );
-
+          console.log(urlfile)
         let url = await getDownloadURL(urlfile.ref)
         url ? console.log(url) : console.log('false')
+    console.log({
+        ...user,
+        file: url
+    })
 
         await addDoc(bookColl, {
             ...user,
             file: url
         });
         //TODO: Add UPload file in here so that it works as one prmose
-        alert('Sucessfull')
+        return true
 
     } catch (err) {
         console.log(err)
         alert(err);
-        alert('err');
+        return false
 
     }
-    console.log('Addbook in progress');
-    console.log(urlfile)
 }
 
 export async function getBooks() {
