@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { useLocation,Link } from 'react-router-dom'
+import { useSession } from '../Contexts/SessionContext';
 
 function Navbar() {
   const location = useLocation();
+  
+    const {jess} = useSession()
+    console.log(jess)
   useEffect(()=>{
     console.log('I have been rendered')
   },[])
@@ -18,6 +22,9 @@ function Navbar() {
         </li>
         <li class="nav-item mx-1">
           <Link class={`btn btn-outline-primary ${location.pathname === '/sell'?'btn-primary text-white':''}`} to='/sell'>Sell</Link>
+        </li>
+        <li class="nav-item mx-1">
+          <Link class={`btn btn-outline-warning`} to='/signup'>Sign Up</Link>
         </li>
       </ul>
   </div>

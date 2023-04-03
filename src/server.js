@@ -21,45 +21,16 @@ import {
     uploadBytesResumable,
     uploadBytes
 } from 'firebase/storage'
-import { getAuth } from 'firebase/auth';
+
+// DATABASE
 
 const db = getFirestore(app);
 const storage = getStorage(app)
-
-
-  
-
-
-
-// Adding Books
 console.log('server is running');
-const bookColl = collection(db, 'books')
-export let auth = getAuth();
+const bookColl = collection(db, 'books');
 
-//  function uploadFile(file){
-//     console.log(file)
-//     const rInt = Math.floor(1000 + Math.random() * 9000)
-//     const fileRef = ref(storage, `images/${file.name}--${file.lastModified}`);
-//     let downloadURL;
+// ADD BOOK
 
-
-
-//     try{
-
-
-//         })
-//     return downloadURL
-
-
-
-
-
-
-//     }
-//     catch{
-//         console.log('error')
-//     }
-// }
 
 
 export async function addBook(user) {
@@ -98,6 +69,7 @@ export async function addBook(user) {
 
     }
 }
+// GET ALL BOOKS
 
 export async function getBooks() {
     let bookSnap = await getDocs(bookColl);
@@ -111,7 +83,10 @@ export async function getBooks() {
 
 }
 
-// Querying Books based on fliter
+// GOOGLE AUTHENTICATION
 
 
-//So I'll  begin by making CRUD then I can just call each function to perform these actions.
+
+
+
+

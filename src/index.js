@@ -10,24 +10,24 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Signup from './pages/Signup';
+import {SessionProvider} from './Contexts/SessionContext'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <Navbar/>
-    
-      <Routes path='/'>
-        <Route index element={ <Home/>} ></Route>
-        <Route path='buy' element={ <BuyBooks/>} ></Route>
-        <Route path='sell' element={ <SellBooks/>} ></Route>
-        <Route path='signup' element={ <Signup/>} ></Route>
-
-      </Routes>
-      
+    <SessionProvider>
+      <BrowserRouter>
+        <Navbar/>
+        <Routes path='/'>
+          <Route index element={ <Home/>} ></Route>
+          <Route path='buy' element={ <BuyBooks/>} ></Route>
+          <Route path='sell' element={ <SellBooks/>} ></Route>
+          <Route path='signup' element={ <Signup/>} ></Route>
+        </Routes>
+        <Footer />
     </BrowserRouter>
-    <Footer />
+  </SessionProvider>
   </React.StrictMode>
 );
 

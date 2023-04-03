@@ -1,13 +1,14 @@
 import '../css/Home.css'
+import { Link } from 'react-router-dom';
 function Home() {
   return (
     <div >
       
-      <div className="d-flex justify-content-end flex-column " style={{height:'90vh'}}>
-        <div className="flex-fill card br-0 border-dark m-3 my-4">
+      <div className="d-flex justify-content-end flex-column flex-md-row" style={{height:'90vh'}}>
+        <div className="flex-fill d-flex justify-content-center card br-0 border-dark mx-3 my-4">
           <div className="card-body">
-            <a href="/sell">
-              <h4 className="card-title">Sell old books</h4></a>
+            <Link to="/sell">
+              <h4 className="card-title">Sell old books</h4></Link>
               <p>
                 <strong>Have donzens of old books just stting around?</strong>
                 <br />
@@ -16,11 +17,11 @@ function Home() {
               </p>
           </div>
         </div>
-        <div className="flex-fill card br-0 border-dark m-3 ">
+        <div className="flex-fill card br-0 border-dark mx-3 my-4">
           <div className="card-body">
-            <a href="/buy">
+            <Link to='/buy'>
               <h4 className="card-title">Buy books</h4>
-            </a>
+            </Link>
 
 
               <p>
