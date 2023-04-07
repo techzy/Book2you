@@ -64,7 +64,9 @@ export default function BuyBooks() {
                     {
                     
                         
-                        booksState[0] === ''?'Books are loading...':booksState.map(ele => <BookCard book={ele}/>)
+                        booksState[0] === ''?'Books are loading...':booksState.map(ele => {
+                        <BookCard book={ele} key={ele.userUID} />
+                    })
 
 
                         
