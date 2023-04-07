@@ -23,9 +23,9 @@ function Signup() {
 
   })
   return (
-    <div className="container d-flex justify-content-center align-items-center" style={{height:'80vh'}}>
-    <button className="btn btn-primary btn-lg" onClick={handleSignup}>Google</button>
-
+    <div className="container d-flex flex-column justify-content-center align-items-center" style={{height:'80vh'}}>
+      <h1>Sign Up</h1>
+      <button className="btn btn-primary btn-lg" onClick={handleSignup}>Google</button>
     </div>
   )
 }

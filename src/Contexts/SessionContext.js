@@ -45,16 +45,16 @@ export function SessionProvider({children}) {
         })
     },[])
 
-// let logOut = async ()=>{
-//     try{
-//          let data =  signOut(auth)
-//          console.log(data)
-//     }
-//     catch{
+let logOut = async ()=>{
+    try{
+         let data =  signOut(auth)
+         console.log(data)
+    }
+    catch{
 
-//     }
-//     console.log('logout function is being called')
-// }
+    }
+    console.log('logout function is being called')
+}
 
 let signupG = async () => {
   try{
@@ -73,7 +73,7 @@ console.log(err)
 
 //   console.log(user)
     return ( 
-    <SessionContext.Provider value={{signupG,user}}>
+    <SessionContext.Provider value={{signupG,user,logOut}}>
         {children}
     </SessionContext.Provider>
     )

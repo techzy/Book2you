@@ -23,7 +23,6 @@ function SellBooks() {
                     addBook(book).then(()=>{
                         navigate('/buy')
                     });
-                    alert(user.uid)
 
                 alert('Sucess : You will automatically redirected')
 
@@ -37,7 +36,6 @@ function SellBooks() {
             else{
                 alert('Only 10 numbers allowed in phone number')
             }
-            console.log()
             
             // navigate('/buy')
 
