@@ -5,11 +5,8 @@ import { useSession } from '../Contexts/SessionContext';
 function Navbar() {
   const location = useLocation();
   
-    const {jess} = useSession()
-    console.log(jess)
-  useEffect(()=>{
-    console.log('I have been rendered')
-  },[])
+    const {user, logOut} = useSession()
+
   return (
     <>
 {    //TODO: make these all links instead of hrefs
@@ -21,10 +18,17 @@ function Navbar() {
           <Link class={`btn btn-outline-primary ${location.pathname === '/buy'?'btn-primary text-white':''}`} to="/buy">Buy</Link>
         </li>
         <li class="nav-item mx-1">
-          <Link class={`btn btn-outline-primary ${location.pathname === '/sell'?'btn-primary text-white':''}`} to='/sell'>Sell</Link>
+          
+            <Link class={`btn btn-outline-primary ${location.pathname === '/sell'?'btn-primary text-white':''}`} to={ user !==undefined?'/sell':'/signup'}>Sell</Link> 
+          
+          
         </li>
         <li class="nav-item mx-1">
-          <Link class={`btn btn-outline-warning`} to='/signup'>Sign Up</Link>
+          {user ==undefined?<Link class={`btn btn-outline-warning`} to='/signup'>Sign Up</Link>:<Link class={`btn btn-outline-warning`} to='/profile' >Profile</Link>}
+          {
+          console.log(user !==undefined)}
+          {console.log(user)
+          }
         </li>
       </ul>
   </div>

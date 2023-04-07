@@ -11,6 +11,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Signup from './pages/Signup';
 import {SessionProvider} from './Contexts/SessionContext'
+import Error404 from './pages/Error404';
+import Profile from './pages/Profile';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,7 +24,9 @@ root.render(
         <Routes path='/'>
           <Route index element={ <Home/>} ></Route>
           <Route path='buy' element={ <BuyBooks/>} ></Route>
-          <Route path='sell' element={ <SellBooks/>} ></Route>
+          <Route path='sell' element={ <Error404><SellBooks/></Error404>} ></Route>
+          <Route path='profile' element={ <Error404><Profile/></Error404>} ></Route>
+
           <Route path='signup' element={ <Signup/>} ></Route>
         </Routes>
         <Footer />

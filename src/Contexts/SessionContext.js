@@ -1,7 +1,8 @@
 import React, {
     createContext,
     useContext,
-    useEffect
+    useEffect,
+    useState
 } from "react";
 
 
@@ -13,7 +14,9 @@ import {
     signInWithPopup,
     getRedirectResult,
     signInWithRedirect,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    signOut
 } from "firebase/auth";
 
 const SessionContext = React.createContext()
@@ -21,41 +24,54 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 export function SessionProvider({children}) {
-    let signupG = () => {
-        signInWithRedirect(auth, provider);
-        getRedirectResult(auth)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access Google APIs.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-
-                // The signed-in user info.
-                const user = result.user;
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-                // ...
-
-            });
     
+    const [user,setUser] = useState();
 
-    }
-    const user = auth.currentUser;
-  console.log(user)
+    useEffect(()=>{
+        onAuthStateChanged(auth, (res)=>{
+            if(res){
+                console.log(res)
+                    setUser({
+                        displayName:res.displayName,
+                        email:res.email,
+                        uid:res.uid
+                    })
+                }
+            
+            else{
+                console.log('User not logged in',res)
+                setUser()
+            }
+        })
+    },[])
 
-useEffect(()=>{
-        // The user object has basic properties such as display name, email, etc.
-        
-        console.log(user)
-},[user])
+// let logOut = async ()=>{
+//     try{
+//          let data =  signOut(auth)
+//          console.log(data)
+//     }
+//     catch{
+
+//     }
+//     console.log('logout function is being called')
+// }
+
+let signupG = async () => {
+  try{
+    let res  =  signInWithRedirect(auth, provider);
+    await res;
+    // console.log(res)
+  }
+  catch(err){
+console.log(err)
+  }
+    console.log('redirect done')
+
+}
+// signupG();
+// const user = auth.currentUser;
+
+//   console.log(user)
     return ( 
     <SessionContext.Provider value={{signupG,user}}>
         {children}
