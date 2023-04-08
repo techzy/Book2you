@@ -13,6 +13,7 @@ export default function BuyBooks() {
                 // debugger
                 bookArr = await getBooks();
                 setbooksState(bookArr);
+                console.log(booksState)
             }
             catch{
                 console.log('error')
@@ -61,20 +62,14 @@ export default function BuyBooks() {
                 </div> */}
                 <div className="container pt-3">
                     
-                    {
-                    
-                        
-                        booksState[0] === ''?'Books are loading...':booksState.map(ele => {
-                        <BookCard book={ele} key={ele.userUID} />
-                    })
-
-
-                        
-                        
-                    }
+                
                     { 
-                        booksState[0] === undefined?'No books yet :(':''
+                        booksState[0] === undefined?'No books yet :(':
+                        booksState.map((ele) => {
+                            <BookCard book={ele}  />
+                        })
                     }
+                       
                     
                 </div>
         </>

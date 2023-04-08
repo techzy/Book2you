@@ -9,15 +9,15 @@ function Profile() {
   return (
     <>
       <div className="container">
-      <h1>
-      Welcome {user.displayName}
-      </h1>
-      <p>Feature to delete books is coming soon</p>
-      <p>Feature to to update books is coming soon</p>
-      <button className="btn btn-danger" onClick={()=>{
-        logOut()
-        navigate('/buy')
-        }}>Log out</button>
+          <h1>
+          Welcome {user.displayName}
+          </h1>
+          <p>Feature to delete books is coming soon</p>
+          <p>Feature to to update books is coming soon</p>
+          <button className="btn btn-danger" onClick={()=>{
+            logOut()
+            navigate('/buy')
+            }}>Log out</button>
       </div>
     </>
   )

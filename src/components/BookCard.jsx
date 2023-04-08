@@ -1,7 +1,7 @@
 import React from 'react'
 
-function BookCard(prop ) {
-    
+function BookCard(prop) {
+    console.log(prop)
     return (
         <div className="card mb-3" >
             <div className="row g-0">
@@ -15,8 +15,6 @@ function BookCard(prop ) {
                         <a href={`tel:${prop.book.phoneNumber}`} className="card-text"> {prop.book.phoneNumber}</a>
                         <p className="card-text fw-bold"> {prop.book.location}</p>
                         <p className="card-text fw-bold">Condition: {prop.book.condition}</p>
-
-                        
                     </div>
                 </div>
             </div>

@@ -77,6 +77,7 @@ export async function getBooks() {
     bookSnap.docs.forEach((ele) => {
         bookArray.push(ele.data())
     })
+    console.log(bookArray)
     return bookArray
 
 

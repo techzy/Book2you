@@ -26,7 +26,7 @@ function Home() {
             <Link to="/sell">
               <h4 className="card-title">Sell old books</h4></Link>
               <p>
-                <strong>Have donzens of old books just stting around?</strong>
+                <strong>Have dozens of old books just sitting around?</strong>
                 <br />
                 <br />
                 Sell your books today and make some quick cash
