@@ -6,7 +6,12 @@ import { useEffect } from 'react';
 
 function Signup() {
   const navigate = useNavigate();
-  alert(window.navigator.userAgent);
+  var isInsideInAppBrowser = /(FBAN|FBAV|Twitter)/.test(window.navigator.userAgent);
+if (isInsideInAppBrowser) {
+  alert('The website is loaded inside an in-app browser.');
+} else {
+  alert('The website is not loaded inside an in-app browser.');
+}
 
 
   const {signupG, user} = useSession()
