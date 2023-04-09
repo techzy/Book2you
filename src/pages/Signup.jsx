@@ -6,12 +6,10 @@ import { useEffect } from 'react';
 
 function Signup() {
   const navigate = useNavigate();
-  var isInsideInstagramBrowser = /Instagram/.test(navigator.userAgent);
-if (isInsideInstagramBrowser) {
-  alert('The website is loaded inside the Instagram in-app browser.');
-} else {
-  alert('The website is not loaded inside the Instagram in-app browser.');
-}
+  let isInsideInAppBrowser = /(FBAN|FBAV|Twitter|Instagram|Discord)/.test(window.navigator.userAgent);
+if (isInsideInAppBrowser) {
+  alert('Sign up will not work please click the three dots and go to "Open in system browser" Thanks :) ');
+} 
 
 
   const {signupG, user} = useSession()
