@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 
 function Signup() {
   const navigate = useNavigate();
+  alert((window.navigator.userAgent).includes());
+
 
   const {signupG, user} = useSession()
 
