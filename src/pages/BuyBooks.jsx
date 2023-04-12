@@ -58,13 +58,17 @@ export default function BuyBooks() {
                         </div>
                     </div>
                 </div> */}
-                <div className="container pt-3">
+                <div className="container justify-content-center pt-3">
                     
                 
                     { 
-                        booksState[0] === undefined?
+                        booksState[0] == undefined?
                             //TODO: ADD LOADER
-                        'No books yet :(':
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>:
                             booksState.map((ele)=>{
                                 return <BookCard book={ele}  key={ele.userUID}/>
                             })

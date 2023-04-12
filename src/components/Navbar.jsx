@@ -9,8 +9,7 @@ function Navbar() {
 
   return (
     <>
-{    //TODO: make these all links instead of hrefs
-}    <nav className="navbar bg-light">
+    <nav className="navbar bg-light">
   <div className="container-fluid justify-content-between">
     <a className="navbar-brand mb-0 h1" href='/'>Book2Man</a>
     <ul className="navbar-nav flex-row ">
