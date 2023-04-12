@@ -62,7 +62,9 @@ export default function BuyBooks() {
                     
                 
                     { 
-                        booksState[0] === undefined?'No books yet :(':
+                        booksState[0] === undefined?
+                            //TODO: ADD LOADER
+                        'No books yet :(':
                             booksState.map((ele)=>{
                                 return <BookCard book={ele}  key={ele.userUID}/>
                             })
