@@ -63,7 +63,6 @@ export default function BuyBooks() {
                 
                     { 
                         booksState[0] == undefined?
-                            //TODO: ADD LOADER
                             <div class="d-flex justify-content-center">
                                 <div class="spinner-border text-primary" role="status">
                                     <span class="visually-hidden">Loading...</span>

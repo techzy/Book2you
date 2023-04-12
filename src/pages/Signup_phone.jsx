@@ -14,7 +14,6 @@ function Signup_phone() {
 
     // console.log(auth)
         let submitSignup =(e) => {
-            //TODO: add some basci validation
             e.preventDefault()
             window.recaptchaVerifier = new RecaptchaVerifier('submitPhone', {
                 'size': 'invisible',

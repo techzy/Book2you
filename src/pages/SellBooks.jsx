@@ -6,6 +6,7 @@ import {addBook, uploadFile} from '../server.js';
 
 function SellBooks() {
     const {user} = useSession()
+    const [loading, setLoading] = useState(false)
     const [book, setBook] = useState({
         userUID:user.uid,
         phoneNumber:Number,
@@ -25,6 +26,8 @@ function SellBooks() {
                     });
 
                 alert('Sucess : You will automatically redirected')
+                setLoading(true)
+               
 
                 }
                 else{
@@ -43,7 +46,6 @@ function SellBooks() {
     }
 
 
-    //TODO:  I need to some basic authenticaiton like phone number is 10 digits title of the book needs to be between 3 words or smt like that location is only 15 characters  and add new textarea field to specify the condition of the book
     //TODO: Take all the form, and setBook code into its own component and just render out this without all setter Logic
     return (
         <div className="container">
@@ -99,7 +101,14 @@ function SellBooks() {
             <br />
             <br />
             <small className='fs-6'>You will be redirected</small>
-
+            {
+                    loading == true?
+                    <div class="d-flex justify-content-center mt-5">
+                      <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                  </div>:''
+                  }
         </form>
         </div>
     )
