@@ -8,7 +8,6 @@ export default function BuyBooks() {
     useEffect(()=>{
         let books = async()=>{
         let bookArr
-
             try{
                 // debugger
                 bookArr = await getBooks();
@@ -19,7 +18,6 @@ export default function BuyBooks() {
                 console.log('error')
             }
         // console.log(booksState);
-
         }
         books();
         console.log(booksState[0])
