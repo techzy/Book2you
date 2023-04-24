@@ -25,7 +25,7 @@ function SellBooks() {
                         navigate('/buy')
                     });
 
-                alert('Sucess : You will automatically redirected')
+                alert('Please wait to be automatically redirected')
                 setLoading(true)
                
 
@@ -91,7 +91,7 @@ function SellBooks() {
                 </select>
             </div>
             <div className="mb-3">
-                <label htmlFor="" className="form-label">Choose file <span className='text-danger'>*</span></label>
+                <label htmlFor="" className="form-label">Open Camera <span className='text-danger'>*</span></label>
                 
 
                 <input  accept="image/*" capture="environment" type="file" className="form-control form-control-lg" name="" id="" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setBook({...book, file: e.target.files[0]})

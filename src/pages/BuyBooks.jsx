@@ -69,7 +69,9 @@ export default function BuyBooks() {
                                 </div>
                             </div>:
                             booksState.map((ele)=>{
-                                return <BookCard book={ele}  key={ele.userUID}/>
+                                return (
+                                <BookCard book={ele}  key={ele.userUID}/>
+                                )
                             })
                     }
                        

@@ -6,7 +6,7 @@ function Home() {
     <>
       
       <div className="d-flex justify-content-center">
-        <img src={bookCircle} class="w-100" alt="" />
+        <p>This is a platform where you can buy and sell second hand books</p>
       </div>
 
     </>

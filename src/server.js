@@ -15,11 +15,10 @@ import {
 } from 'firebase/firestore'
 
 import {
-    getDownloadURL,
     getStorage,
     ref,
     uploadBytesResumable,
-    uploadBytes
+    getDownloadURL
 } from 'firebase/storage'
 
 // DATABASE
@@ -38,6 +37,7 @@ export async function addBook(user) {
     const fileRef = ref(storage, `images/${user.file.name}-${rInt}-${user.file.lastModified}`);
     let urlfile;
     let downloadURL;
+    let url;
     // uploadBytes(fileRef, user.file).then((e)=>{
     //     console.log(e)
     // getDownloadURL(e.ref).then((url) => {
@@ -46,19 +46,43 @@ export async function addBook(user) {
 
     try {
         console.log('I tried');
-        urlfile = await uploadBytesResumable(fileRef, user.file)
-          console.log(urlfile)
-        let url = await getDownloadURL(urlfile.ref)
-        url ? console.log(url) : console.log('false')
-    console.log({
-        ...user,
-        file: url
-    })
+        urlfile = uploadBytesResumable(fileRef, user.file)
+        // urlfile.on('progress', snapshot => {
+        //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //     console.log(`Upload is ${progress}% done`);
+        //   });
+        urlfile.on('state_changed',
+            (snapshot) => {
+                // Observe state change events such as progress, pause, and resume
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+            },
+            (error) => {
+                console.log(error)
+            },
+            () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                getDownloadURL(urlfile.snapshot.ref).then((downloadURL) => {
+                    url = downloadURL;
+                    addDoc(bookColl, {
+                        ...user,
+                        file: url
+                    });
+                });
+                
+            }
+        );
 
-        await addDoc(bookColl, {
+        console.log(urlfile)
+        url ? console.log(url) : console.log('no URL')
+        console.log({
             ...user,
             file: url
-        });
+        })
+
+         
         //TODO: Add UPload file in here so that it works as one prmose
         return true
 
@@ -74,8 +98,11 @@ export async function addBook(user) {
 export async function getBooks() {
     let bookSnap = await getDocs(bookColl);
     let bookArray = []
+    const collectionId = bookColl.id;
+
     bookSnap.docs.forEach((ele) => {
-        bookArray.push(ele.data())
+        console.log(ele.id)
+        bookArray.push(ele.data().add())
     })
     console.log(bookArray)
     return bookArray
@@ -83,10 +110,8 @@ export async function getBooks() {
 
 }
 
+export async function deleteBooks(userID, bookID){
+
+}
+
 // GOOGLE AUTHENTICATION
-
-
-
-
-
-
