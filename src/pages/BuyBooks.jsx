@@ -11,6 +11,7 @@ export default function BuyBooks() {
             try{
                 // debugger
                 bookArr = await getBooks();
+                console.log('getting')
                 setbooksState(bookArr);
                 console.log(booksState)
             }
@@ -59,7 +60,6 @@ export default function BuyBooks() {
                     </div>
                 </div> */}
                 <div className="container justify-content-center pt-3">
-                    
                 
                     { 
                         booksState[0] == undefined?
@@ -70,7 +70,16 @@ export default function BuyBooks() {
                             </div>:
                             booksState.map((ele)=>{
                                 return (
-                                <BookCard book={ele}  key={ele.userUID}/>
+                                    <BookCard 
+                                    bookTitle={ele.bookTitle}
+                                    condition={ele.condition} 
+                                    file={ele.file} 
+                                    location={ele.location} 
+                                    phoneNumber={ele.phoneNumber} 
+                                    price={ele.price} 
+                                    key={ele.userUID} 
+                                    allowDelete={false}
+                                  />
                                 )
                             })
                     }

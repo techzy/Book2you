@@ -11,10 +11,11 @@ function Profile() {
     const navigate = useNavigate()
     useEffect(()=>{
       let books = async()=>{
+        console.log(user)
       let bookArr
           try{
               // debugger
-              bookArr = await getBooks();
+              bookArr = await getBooks(user.uid);
               setbooksState(bookArr);
               console.log(booksState)
           }
@@ -25,6 +26,7 @@ function Profile() {
       }
       books();
       console.log(booksState[0])
+      console.log(booksState)
   },[])
     
   return (
@@ -40,22 +42,30 @@ function Profile() {
                   <div class="spinner-border text-primary" role="status">
                       <span class="visually-hidden">Loading...</span>
                   </div>
+                  <p>
+                  Have You added any books?
+
+                  </p>
               </div>:
               booksState.map((ele)=>{
                   return (
                   <BookCard 
+                    bookID={ele.bookID} 
+                    key={ele.bookID}
                     bookTitle={ele.bookTitle}
                     condition={ele.condition} 
                     file={ele.file} 
                     location={ele.location} 
                     phoneNumber={ele.phoneNumber} 
                     price={ele.price} 
-                    key={ele.userUID} 
+                    userID={ele.userUID} 
                     allowDelete={true}
                   />
+                  
                   )
                 })
             }
+            
           <p>Feature to to update books is coming soon</p>
           <button className="btn btn-danger" onClick={()=>{
             logOut()

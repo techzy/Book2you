@@ -95,22 +95,59 @@ export async function addBook(user) {
 }
 // GET ALL BOOKS
 
-export async function getBooks() {
-    let bookSnap = await getDocs(bookColl);
-    let bookArray = []
-    const collectionId = bookColl.id;
+export async function getBooks(user) {
+    console.log(user,'coming from get books')
+    try{
+        let bookSnap = await getDocs(bookColl);
+        let bookArray = []
+        const collectionId = bookColl.id;
+        console.log(bookSnap)
+        if(user){
+            console.log('first')
+            bookSnap.docs.forEach((ele) => {
+                let bookwID = ele.data()
+                console.log(ele.data().userUID == user)
+                console.log(ele.data().userUID)
+                console.log(user)
+                if(ele.data().userUID == user){
+                    bookArray.push(Object.assign(bookwID,{'bookID':ele.id}))
+                }
+            })
+        }
+        else{
+            console.log('last')
+            bookSnap.docs.forEach((ele) => {
+                let bookwID = ele.data()
+                // Only if it equals the ID
+                bookArray.push(Object.assign(bookwID,{'bookID':ele.id}))
+            })
+        }
 
-    bookSnap.docs.forEach((ele) => {
-        console.log(ele.id)
-        bookArray.push(ele.data().add())
-    })
     console.log(bookArray)
     return bookArray
+    }
+    catch(err){
+        console.log(err)
+    }
 
 
 }
 
-export async function deleteBooks(userID, bookID){
+export async function deleteBook(bookID){
+    try{
+        // 
+        console.log('trying ')
+        console.log(bookID)
+        
+        let docRef = doc(db, "books", bookID)
+        await deleteDoc(docRef);
+        alert('Please refresh your book has been deleted : ( ')
+
+    }
+    catch(err){
+        alert(err)
+    }
+    console.log('done')
 
 }
 

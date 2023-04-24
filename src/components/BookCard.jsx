@@ -1,6 +1,12 @@
-import React from 'react'
-
-function BookCard({bookTitle,condition,file,location,phoneNumber,price,key,allowDelete}) {
+import React,{useState} from 'react'
+import {deleteBook} from '../server'
+function BookCard({bookTitle,condition,file,location,phoneNumber,price,bookID,userID,allowDelete,}) {
+    const [deleteLoading, setDeleteLoading] = useState()
+    console.log(bookID,userID)
+    function handleDelete(){
+        console.log(bookID)
+        deleteBook(bookID);
+    }
     return (
         <div className="card mb-3" >
             <div className="row g-0">
@@ -14,7 +20,7 @@ function BookCard({bookTitle,condition,file,location,phoneNumber,price,key,allow
                        {phoneNumber && <a href={`tel:${phoneNumber}`} className="card-text"> {phoneNumber}</a> } 
                         <p className="card-text fw-bold"> {location}</p>
                         <p className="card-text fw-bold">Condition: {condition}</p>
-                        {allowDelete?<div className="btn btn-danger">delete</div>:''}
+                        {allowDelete?<div className="btn btn-danger" onClick={handleDelete}>delete</div>:''}
                     </div>
                 </div>
                 

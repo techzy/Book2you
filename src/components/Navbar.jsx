@@ -11,7 +11,7 @@ function Navbar() {
     <>
     <nav className="navbar bg-light">
   <div className="container-fluid justify-content-between">
-    <a className="navbar-brand mb-0 h1" href='/'>Book2Man</a>
+    <a className="navbar-brand mb-0 h1" href='/'>Book2You</a>
     <ul className="navbar-nav flex-row ">
         <li className="nav-item mx-1">
           <Link className={`btn btn-outline-primary ${location.pathname === '/buy'?'btn-primary text-white':''}`} to="/buy">Buy</Link>
