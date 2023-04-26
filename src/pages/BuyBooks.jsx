@@ -77,7 +77,7 @@ export default function BuyBooks() {
                                     location={ele.location} 
                                     phoneNumber={ele.phoneNumber} 
                                     price={ele.price} 
-                                    key={ele.userUID} 
+                                    key={ele.bookID}
                                     allowDelete={false}
                                   />
                                 )

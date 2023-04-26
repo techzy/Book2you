@@ -1,12 +1,18 @@
 
-import React , {useState} from 'react'
+import React , {useState,useRef} from 'react'
 import { redirect,useNavigate } from 'react-router-dom';
+import BarcodeScanner from '../components/BarcodeScanner.jsx';
 import { useSession } from '../Contexts/SessionContext.js';
+import isValidISBN from '../api/validISBN.js';
+import isbnLookup from '../api/isbnLookup.js';
+
+
 import {addBook, uploadFile} from '../server.js';
 
 function SellBooks() {
     const {user} = useSession()
     const [loading, setLoading] = useState(false)
+    const isbnRef = useRef(null)
     const [book, setBook] = useState({
         userUID:user.uid,
         phoneNumber:Number,
@@ -14,41 +20,43 @@ function SellBooks() {
         location: String,
         price: Number,
         condition:'Like New',
-        file: Object, 
+        file: '', 
     });
+    const [isbn, setIsbn] = useState('');
+    
+
+      const handleBarcodeDetected = (detectedIsbn) => {
+        if (isValidISBN(detectedIsbn)) {
+          setIsbn(detectedIsbn);
+        } else {
+          console.error(`Invalid ISBN detected: ${detectedIsbn}`);
+        }
+      };
+      
     const navigate = useNavigate()
-    function formValid(e){
-            e.preventDefault();
-            if(book.phoneNumber.toString().length == 10){
-                if(book.bookTitle.length < 100){
-                    addBook(book).then(()=>{
-                        navigate('/buy')
-                    });
-
-                alert('Please wait to be automatically redirected')
-                setLoading(true)
-               
-
-                }
-                else{
-                    alert('Only 99 characters allowed as letter')
-
-                }
-                
-            }
-            else{
-                alert('Only 10 numbers allowed in phone number')
-            }
-            
-            // navigate('/buy')
-
-            // window.location('/')
-    }
+    
 
 
     //TODO: Take all the form, and setBook code into its own component and just render out this without all setter Logic
     return (
         <div className="container">
+            {/* <BarcodeScanner onDetected={handleBarcodeDetected} /> */}
+            {/* <p>Detected ISBN: {isbn}</p> */}
+            <div>
+                <div class="mb-3">
+                  <label for="" class="form-label">Enter ISBN</label>
+                  <input ref={isbnRef} type="text"
+                      class="form-control form-control-sm" name="" id="" aria-describedby="helpId" placeholder="" />
+                  <button className="btn-primary"  onClick={()=>{
+                    isbnLookup(isbnRef.current.value)
+                
+            }}> Submit</button>
+                </div>
+                
+            </div>
+            <br />
+            <hr />
+            <br />
             <form onSubmit={ (e)=>{formValid(e)}} >
             <div className="mb-3">
                 <label htmlFor="" className="form-label">Phone number <span className='text-danger'>*</span></label>
@@ -91,12 +99,17 @@ function SellBooks() {
                 </select>
             </div>
             <div className="mb-3">
-                <label htmlFor="" className="form-label">Open Camera <span className='text-danger'>*</span></label>
+                <p className='form-label' >Upload Photo <span className='text-danger'>*</span></p>
+                <label htmlFor="uploadFile" className=" btn btn-outline-primary">Open Camera </label>
                 
 
-                <input  accept="image/*" capture="environment" type="file" className="form-control form-control-lg" name="" id="" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setBook({...book, file: e.target.files[0]})
-            console.log(e.target.files)}}  required />
+                <input  accept="image/*" capture="environment" type="file" className=" file-input" name="" id="uploadFile" placeholder="" aria-describedby="fileHelpId" onChange={(e)=>{setBook({...book, file: e.target.files[0]})
+            console.log(e.target.files)
+            
+            }}  required />
+            {book.file == '' ? '': <span className='ms-3 fw-bold'>Uploaded</span>}
             </div>
+            
             <button type="Submit" className="btn btn-primary">Submit</button>
             <br />
             <br />
