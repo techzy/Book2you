@@ -1,7 +1,7 @@
 
 import React , {useState,useRef} from 'react'
 import { redirect,useNavigate } from 'react-router-dom';
-import BarcodeScanner from '../components/BarcodeScanner.jsx';
+import BarcodeScannerHTML from '../components/BarcodeScannerHTML.jsx';
 import { useSession } from '../Contexts/SessionContext.js';
 import isValidISBN from '../api/validISBN.js';
 import isbnLookup from '../api/isbnLookup.js';
@@ -34,29 +34,20 @@ function SellBooks() {
       };
       
     const navigate = useNavigate()
+    const handleDecode = (decodedText) => {
+        console.log('ISBN:', decodedText);
+      };
     
 
 
     //TODO: Take all the form, and setBook code into its own component and just render out this without all setter Logic
     return (
         <div className="container">
-            {/* <BarcodeScanner onDetected={handleBarcodeDetected} /> */}
-            {/* <p>Detected ISBN: {isbn}</p> */}
-            <div>
-                <div class="mb-3">
-                  <label for="" class="form-label">Enter ISBN</label>
-                  <input ref={isbnRef} type="text"
-                      class="form-control form-control-sm" name="" id="" aria-describedby="helpId" placeholder="" />
-                  <button className="btn-primary"  onClick={()=>{
-                    isbnLookup(isbnRef.current.value)
-                
-            }}> Submit</button>
-                </div>
-                
-            </div>
-            <br />
-            <hr />
-            <br />
+            {/* <BarcodeScanner onDetected={handleBarcodeDetected} />
+             */}
+                   <BarcodeScannerHTML />
+
+
             <form onSubmit={ (e)=>{formValid(e)}} >
             <div className="mb-3">
                 <label htmlFor="" className="form-label">Phone number <span className='text-danger'>*</span></label>

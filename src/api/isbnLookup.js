@@ -7,7 +7,7 @@ export default async function isbnLookup(isbn) {
       const bookInfo = data[`ISBN:${isbn}`];
   
       if (bookInfo) {
-        console.log(bookInfo)
+        alert(bookInfo)
         return bookInfo;
       } else {
         console.log('book doesnt exist ')

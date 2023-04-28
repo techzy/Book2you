@@ -8,7 +8,6 @@ const BarcodeScanner = ({ onDetected }) => {
 
   useEffect(() => {
     if (!scannerRef.current) return;
-    isbnLookup(9780061241895)
     Quagga.init(
       {
         inputStream: {

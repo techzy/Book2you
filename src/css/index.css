@@ -60,3 +60,8 @@ input[type="file"] {
 .file-label:hover {
   background-color: #45a049;
 }
+
+#scannervideo{
+  height: 1000px;
+  width: 1000px;
+}
