@@ -1,7 +1,7 @@
 
 import React , {useState,useRef} from 'react'
 import { redirect,useNavigate } from 'react-router-dom';
-import BarcodeScannerHTML from '../components/BarcodeScannerHTML.jsx';
+// import BarcodeScannerHTML from '../components/BarcodeScannerHTML.jsx';
 import { useSession } from '../Contexts/SessionContext.js';
 import isValidISBN from '../api/validISBN.js';
 import isbnLookup from '../api/isbnLookup.js';
