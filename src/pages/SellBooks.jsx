@@ -45,7 +45,7 @@ function SellBooks() {
         <div className="container">
             {/* <BarcodeScanner onDetected={handleBarcodeDetected} />
              */}
-                   <BarcodeScannerHTML />
+                   {/* <BarcodeScannerHTML /> */}
 
 
             <form onSubmit={ (e)=>{formValid(e)}} >
