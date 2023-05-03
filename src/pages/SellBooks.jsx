@@ -1,7 +1,7 @@
 
 import React , {useState,useRef} from 'react'
 import { redirect,useNavigate } from 'react-router-dom';
-// import BarcodeScannerHTML from '../components/BarcodeScannerHTML.jsx';
+import BarcodeScannerHTML from '../components/BarcodeScannerHTML.jsx';
 import { useSession } from '../Contexts/SessionContext.js';
 import isValidISBN from '../api/validISBN.js';
 import isbnLookup from '../api/isbnLookup.js';
@@ -24,7 +24,34 @@ function SellBooks() {
     });
     const [isbn, setIsbn] = useState('');
     
+    function formValid(e){
+        e.preventDefault();
+        if(book.phoneNumber.toString().length == 10){
+            if(book.bookTitle.length < 100){
+                addBook(book).then(()=>{
+                    navigate('/buy')
+                });
 
+            alert('Please wait to be automatically redirected')
+            setLoading(true)
+
+
+            }
+            else{
+                alert('Only 99 characters allowed as letter')
+
+
+            }
+
+        }
+        else{
+            alert('Only 10 numbers allowed in phone number')
+        }
+
+        // navigate('/buy')
+
+        // window.location('/')
+}
       const handleBarcodeDetected = (detectedIsbn) => {
         if (isValidISBN(detectedIsbn)) {
           setIsbn(detectedIsbn);
