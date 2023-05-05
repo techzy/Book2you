@@ -13,6 +13,8 @@ import Signup from './pages/Signup';
 import {SessionProvider} from './Contexts/SessionContext'
 import Error404 from './pages/Error404';
 import Profile from './pages/Profile';
+import { Analytics } from '@vercel/analytics/react';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,6 +34,8 @@ root.render(
         <Footer />
     </BrowserRouter>
   </SessionProvider>
+  <Analytics />
+
   </React.StrictMode>
 );
 
